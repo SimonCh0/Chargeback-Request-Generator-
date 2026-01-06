@@ -297,7 +297,15 @@ const App = () => {
         window.parent.postMessage({ type: "objectHeight", height }, "*");
       });
     };
+    
+function postHeight() {
+  const height = document.body.scrollHeight;
+  window.parent.postMessage({ type: "objectHeight", height }, "*");
+}
 
+window.addEventListener("load", postHeight);
+window.addEventListener("resize", postHeight);
+    
     sendHeight();
     const t1 = setTimeout(sendHeight, 100);
     const t2 = setTimeout(sendHeight, 300);
